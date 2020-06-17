@@ -17,7 +17,7 @@ class Plane(object):
 
 comp = "Aeroflot","Air France","KLM","Lufthansa","British Airways"
 
-# Создаём 50 самолётов со случайными значениями.
+# Создаём 50 самолётов со случайными значениями. 
 planes = list()
 for i in range (0,50):
   onemore_plane = Plane(str(i),random.choice(comp), random.randrange(1,360,1), random.randrange(1,360,1))
