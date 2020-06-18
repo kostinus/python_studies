@@ -1,3 +1,5 @@
+"""Python class AGE"""
+
 kinder = range(0,6)
 school = range(6,18)
 university = range(18,24)
@@ -16,6 +18,6 @@ try:
     print("Тебе пора на работу.")
 except ValueError:
   print("Такого не бывает.")
-  
+
 #else:
  # print("Такого возраста не бывает.")
