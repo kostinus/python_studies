@@ -1,7 +1,9 @@
 kinder = range(0,6)
 school = range(6,18)
 university = range(18,24)
+
 age = input("Сколько тебе лет, дорогой пользователь?\n")
+
 try:
   age=float(age)
   if age in kinder:
@@ -14,5 +16,6 @@ try:
     print("Тебе пора на работу.")
 except ValueError:
   print("Такого не бывает.")
+  
 #else:
  # print("Такого возраста не бывает.")
