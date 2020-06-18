@@ -15,7 +15,7 @@ try:
   elif age in university:
     print("Тебе пора в институт.")
   else:
-    print("Тебе пора на работу.")
+    print("Тебе пора на работу.") 
 except ValueError:
   print("Такого не бывает.")
 
