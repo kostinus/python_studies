@@ -1,7 +1,9 @@
 """Python homework Planes
 """
 import random
-import math
+from math import sqrt
+import doctest
+doctest.testmod()
 
 class Plane(object):
   
@@ -24,12 +26,12 @@ class Plane(object):
     2. выясняем разницу между y-координатами двух самолётов, берём значение по модулю и возводим в квадрат
     3. складываем полученные значения
     4. извлекаем их полученного значения квадратный корень
-    >>>some_plane = Plane(1,"smth",1,2)
-    >>>other_plane = Plane(2,"smth",3,4)
-    >>>some_plane.distance(other_plane)
+    >>>a = Plane(1,"smth",1,2)
+    >>>b = Plane(2,"smth",3,4)
+    >>>a.distance(b)
     8.61577310586391
     """
-    dist = math.sqrt(abs(self.x_position - other.x_position)**2 + abs(self.y_position - other.y_position)**2)
+    dist = sqrt(abs(self.x_position - other.x_position)**2 + abs(self.y_position - other.y_position)**2)
     return dist
 
 comp = "Aeroflot","Air France","KLM","Lufthansa","British Airways"
@@ -45,7 +47,7 @@ some_plane = random.choice(planes)
 planes.remove(some_plane)
 
 
-minimum = math.sqrt(360**2+360**2)
+minimum = sqrt(360**2+360**2)
 for i in planes:
   if some_plane.distance(i) < minimum:
     minimum = some_plane.distance(i)
