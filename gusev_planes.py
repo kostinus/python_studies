@@ -1,3 +1,5 @@
+"""Python homework Planes
+"""
 import random
 import math
 
