@@ -31,7 +31,7 @@ class Plane(object):
 
     def fly(self): # Функция, описывающая перемещение самолёта на каждом ходе.
         # Если поле 5000 на 5000, а скорость до 1000, то всё закончится слишком быстро, поэтому считаем, что десять единиц скорости покрывают одну единицу поля. Скорость назначается при каждом ходе в диапазоне между условными 300 и 1000 единицами за один ход.
-        self.speed = random.randrange(30,100)
+        self.speed = random.randrange(300,1000)
         # Тут, чтобы не накручивать слишком большое количество градусов, контролируем, чтобы итоговое значение осталось в пределах 360.
         if self.direction >=15 or self.direction <= 345:
             self.direction = self.direction + random.randrange(-15,16)
@@ -59,12 +59,8 @@ class Plane(object):
         seg2_2 = Point(other.x_position,other.y_position)
         seg1 = Segment(seg1_1,seg1_2)
         seg2 = Segment(seg2_1,seg2_2)
-        if len(seg1.intersection(seg2)) > 0:
-            return 1
-        else:
-            return 0
-            pass
-
+        return len(seg1.intersection(seg2))
+        
     def visual(self): # Визуализация полёта самолёта. Поскольку мне надо, чтобы всё поместилось на экране, рисуем в масштабе 1 к 10. Все значения для визуализации делим на 10.
          # Рисуем вектор, где начальная точка – это предыдущее положение, а конечная точка – новое положение.
         canvas.create_line(self.old_x/10,self.old_y/10,self.x_position/10,self.y_position/10, fill = self.colour, arrow=LAST, tag = "visual_plane")
@@ -97,7 +93,7 @@ def plane_colour(): # Это функция для случайного выбо
     return colour
 
 for i in range(1,number_of_planes+1): # Создаём самолёты в том количестве, которое получили на входе.
-    a = Plane(i,round(random.choice(pos_random),2),round(random.choice(pos_random),2),0,0,0,random.choice(dir_random),plane_colour())
+    a = Plane(i,round (random.choice(pos_random),2),round(random.choice(pos_random),2),0,0,0,random.choice(dir_random),plane_colour())
     planes.append(a)
 # Рисуем сетку.
 for g in range(0,500,50):
@@ -120,9 +116,13 @@ canvas.delete(countdown)
 
 count = 1 # Номер хода.
 
+for j in planes:
+    j.fly()
+
 while True:
     canvas.delete("visual_plane")
-    sleep(0.5)
+    sleep(3)
+
     for j in planes:
         # Проверяем, не покинул ли самолёт поле.
         if j.out()==1:
@@ -131,6 +131,9 @@ while True:
             canvas.create_text(250,30,text="на ходу №{} самолёт №{} покинул поле".format(count,j.number),fill="red",tag = "message")
             canvas.update()
             print("Ход {}: {} покинул поле.".format(count, j))
+
+        # Проверяем, не столкнулся ли самолёт с другими.
+        
         j.fly()
         j.visual()
     canvas.update()
