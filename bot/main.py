@@ -6,12 +6,10 @@ from your_ai_module import get_ai_response  # Импорт функции для
 
 # Создаем экземпляр бота (замените 'YOUR_BOT_TOKEN' на ваш токен бота)
 bot = telebot.TeleBot('8162476786:AAEWhLQYdB64Y4EJsDgxF4Tz7veikPTrn-U')
-```
 
----
 
 ### Часть 2: Команда `/game` для игры "Камень-ножницы-бумага"
-```python
+
 @bot.message_handler(commands=['game'])
 def play_game(message):
     bot.reply_to(
@@ -42,10 +40,8 @@ def game_response(message):
     )
 
 
----
-
 ### Часть 3: Обработка обычных сообщений с озвучкой ответа
-```python
+
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
     user_message = message.text
@@ -72,12 +68,9 @@ def handle_message(message):
     except Exception as e:
         bot.edit_message_text(chat_id=thinking_message.chat.id, message_id=thinking_message.message_id, text="Произошла ошибка. Попробуйте позже!")
         print(f"Ошибка: {e}")
-```
 
----
 
 ### Часть 4: Запуск бота
-```python
 # Запуск бота
 print("Бот запущен и работает...")
 bot.infinity_polling()
